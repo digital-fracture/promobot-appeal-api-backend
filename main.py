@@ -1,5 +1,6 @@
 import csv
 import io
+from dataclasses import asdict
 
 import aiofiles
 import aiocsv
@@ -13,7 +14,7 @@ from promobot_appeal_processing import predict_async, predict_many
 
 from logic.database import database
 from misc.util import get_temp_file_path, prediction_to_csv_dict
-from misc.config import field_name_mapping
+from misc.config import field_name_mapping, max_parallel_processes
 
 
 app = FastAPI()
@@ -50,7 +51,7 @@ async def api(text: str = Body(embed=True)):
     await database.insert_appeal(text, prediction)
     await database.commit()
 
-    return prediction
+    return {"text": text} | asdict(prediction)
 
 
 @app.post("/file")
@@ -59,7 +60,7 @@ async def file(file: UploadFile):
     csv_reader = csv.DictReader(io.StringIO(contents), delimiter=";")
     texts = tuple(map(lambda row: row["Текст инцидента"], csv_reader))
 
-    predictions = await predict_many(texts, max_workers=4)
+    predictions = await predict_many(texts, max_workers=max_parallel_processes)
 
     async with aiofiles.open(path := get_temp_file_path("csv"), "w", encoding="utf-8") as out_file:
         csv_writer = aiocsv.AsyncDictWriter(

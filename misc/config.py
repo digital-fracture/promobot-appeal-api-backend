@@ -16,3 +16,5 @@ field_name_mapping = {
     "topic_group": "Группа тем",
     "executor": "Исполнитель"
 }
+
+max_parallel_processes = 4

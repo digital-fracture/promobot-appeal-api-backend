@@ -5,19 +5,16 @@ Web API wrapper for the module - backend part
 ### [Module](https://github.com/digital-fracture/promobot-appeal-processing)
 #### [Documentation](https://digital-fracture.github.io/promobot-appeal-processing)
 
-### [Website](https://front-7.vercel.app)
+### [Website](https://intersimp.vercel.app)
 
-### [Jupyter notebook with training code](extra/training.ipynb)
+### [Google Colab notebook with training code](https://colab.research.google.com/drive/1iP3wqZ6wPlP2ZgsNOMA1QbTXDYUDZh82)
 
 ### [GitHub repository with front-end code](https://github.com/digital-fracture/promobot-appeal-api-frontend)
 
 
 ## Run by yourself
 
-### Python package (available at [PyPI](https://pypi.org/project/promobot-appeal-processing))
-```shell
-pip install promobot-appeal-processing
-```
+### Python package is available at [PyPI](https://pypi.org/project/promobot-appeal-processing)
 
 ### Pipenv
 
